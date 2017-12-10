@@ -1,6 +1,11 @@
 
 package modelo;
 
-public class Modelo {
+import java.util.Observable;
+
+public class Modelo extends Observable{
+
+    public Modelo() {
+    }
     
 }
