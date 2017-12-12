@@ -3,7 +3,6 @@ package vista;
 import control.ControlAplicacion;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -14,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class VentanaAplicacion extends JFrame
         implements Observer {
@@ -28,7 +26,7 @@ public class VentanaAplicacion extends JFrame
     private void configurar() {
         ajustarComponentes(getContentPane());
 
-        setSize(new Dimension(400, 600));
+        setSize(new Dimension(600, 400));
         setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -37,19 +35,15 @@ public class VentanaAplicacion extends JFrame
     private void ajustarComponentes(Container c) {
         c.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(8, 6, 8, 6);
-
-        JPanel panel = new JPanel();//la idea es en este panel poner el campo de los mensajes
-        panel.setLayout(new FlowLayout());//para asi salga bien la forma
-        panel.setSize(200, 200);
-        //panel.add();
+        gbc.insets = new Insets(6, 6, 6, 6);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 4;
         gbc.gridheight = 1;
         gbc.weightx = 0.1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weighty = 0.1;
+        gbc.fill = GridBagConstraints.BOTH;
         add(new JScrollPane(
                 campoMensajes = new JTextArea(),
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -60,14 +54,19 @@ public class VentanaAplicacion extends JFrame
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.weightx = 0.1;
+        gbc.weighty = 0.01;
+        gbc.fill = GridBagConstraints.BOTH;
         add(new JScrollPane(
-                campoMensaje = new JTextField(),
+                campoMensaje = new JTextArea(),
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), gbc);
 
         gbc.gridx = 2;
         gbc.weightx = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnEnviar = new JButton("Enviar"), gbc);
+
+        
     }
 
     public void init() {
@@ -81,7 +80,7 @@ public class VentanaAplicacion extends JFrame
 
     private final ControlAplicacion gestorPrincipal;
     private JTextArea campoMensajes;
-    private JTextField campoMensaje;
+    private JTextArea campoMensaje;
     private JButton btnEnviar;
 
 }
