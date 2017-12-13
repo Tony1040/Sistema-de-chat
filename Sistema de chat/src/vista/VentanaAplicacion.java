@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -66,7 +68,19 @@ public class VentanaAplicacion extends JFrame
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(btnEnviar = new JButton("Enviar"), gbc);
 
-        
+        btnEnviar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String mensaje;
+                if (campoMensajes.getText().isEmpty()) {
+                    mensaje = campoMensaje.getText();
+                } else {
+                    mensaje = campoMensajes.getText() + "\n" + campoMensaje.getText();
+                }
+
+                campoMensajes.setText(mensaje);
+            }
+        });
     }
 
     public void init() {
