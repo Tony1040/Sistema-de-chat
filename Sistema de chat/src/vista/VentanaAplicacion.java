@@ -79,8 +79,10 @@ public class VentanaAplicacion extends JFrame
                 }
 
                 campoMensajes.setText(mensaje);
-            }
+                campoMensaje.setText("");
+            };
         });
+        
     }
 
     public void init() {
